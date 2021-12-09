@@ -6,10 +6,10 @@
 	<script src="jquery.min.js"></script>
 	<style>
 		.box {
-			width: 70px;
-			height: 70px;
-			background-color: teal;
-			font-size: 300%;
+			width: 100px;
+			height: 100px;
+			background-color: rgb(123, 158, 255);
+			font-size: 200%;
 			text-align: center;
 			display: block;
 			position: absolute;
@@ -63,16 +63,25 @@
 			// TODO 2 - Variable declarations 
 			var myVariable = 0;
 			var points = 0
-			
+			var speed = 10
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			*/
 			function update() {
-				 moveBoxTo(myVariable);
-				 myVariable = myVariable +	1
+					myVariable = myVariable + speed;
+					moveBoxTo(myVariable);
 
+					if (myVariable <= 0){
+					speed *= -1
+					moveBoxTo(myVariable);
+				}
+					if (myVariable >= boardWidth) {
+					speed = -speed;
+					moveBoxTo(myVariable);
+				}
+				
 			};
 
 			/* 
@@ -81,11 +90,13 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-				myVariable = -50
-				changeBoxText(points + 1);
-
+				myVariable = 5
+				changeBoxText(points += 1);
+				speed += 3
 			};
 		})();
+
+
 	</script>
 </body>
 </html>
